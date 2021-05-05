@@ -1,30 +1,31 @@
-module.exports = () => {
-    const seeders = require("../src/seeders");
-    const { config } = require("../config/config.js");
-    const initialModels = require("../src/models");
-  
-    const Sequelize = require("sequelize");
 
-    const connection = new Sequelize(config.database_name, config.database_user, config.database_password, {
-        host: 'localhost',
-        dialect: 'mysql'
-    });
+const seeders = require("../src/seeders");
+const { config } = require("../config/config.js");
+const initialModels = require("../src/models");
 
-    const {User,Role,Category,Restaurant} = initialModels(connection, Sequelize);
+const Sequelize = require("sequelize");
 
-    connection.sync({ force: false }).then(() => {
-        console.log("wiii! funciono");
-        seeders();
+const connection = new Sequelize(config.database_name, config.database_user, config.database_password, {
+    host: 'localhost',
+    dialect: 'mysql'
+});
 
-    }).catch(e => {
-        console.log(e);
-    });
+const { User, Role, Category, Restaurant } = initialModels(connection, Sequelize);
 
-    return {
-        User,
-        Role,
-        Category,
-        Restaurant
-    }
+connection.sync({ force: false }).then(() => {
+    console.log("wiii! funciono");
+    seeders();
+
+}).catch(e => {
+    console.log(e);
+});
+
+
+module.exports = {
+
+    User,
+    Role,
+    Category,
+    Restaurant
 
 }

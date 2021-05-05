@@ -1,8 +1,8 @@
 module.exports = () => {
   
-    const db = require("../../database/connection");
-    const {Role} = db();
+    const {Role} = require("../../database/connection");
     
+
     const roles = [
         {
             name:"Admin"
