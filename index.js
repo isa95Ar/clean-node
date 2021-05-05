@@ -1,7 +1,8 @@
 const {config} = require('./config/config');
 const api = require('./src/api');
 
-require("./database/connection");
+const db = require("./database/connection");
+db();
 
 const express = require('express');
 const app = express();

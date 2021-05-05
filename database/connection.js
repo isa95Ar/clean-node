@@ -10,7 +10,7 @@ module.exports = () => {
         dialect: 'mysql'
     });
 
-    initialModels(connection, Sequelize);
+    const {User,Role,Category,Restaurant} = initialModels(connection, Sequelize);
 
     connection.sync({ force: false }).then(() => {
         console.log("wiii! funciono");
@@ -19,5 +19,12 @@ module.exports = () => {
     }).catch(e => {
         console.log(e);
     });
+
+    return {
+        User,
+        Role,
+        Category,
+        Restaurant
+    }
 
 }
