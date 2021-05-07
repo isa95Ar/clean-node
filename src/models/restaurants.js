@@ -9,4 +9,4 @@ module.exports=(connection,sequelize) => {
           address: sequelize.STRING,
           schedule:sequelize.STRING
    });
-}
+} //devuelve una función que define la tabla 'restaurants'
