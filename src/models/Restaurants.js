@@ -7,6 +7,7 @@ module.exports=(connection,sequelize) => {
           },
           name: sequelize.STRING,
           address: sequelize.STRING,
-          schedule:sequelize.STRING
+          schedule:sequelize.STRING,
+          profile_picture: sequelize.STRING
    });
 } //devuelve una función que define la tabla 'restaurants'

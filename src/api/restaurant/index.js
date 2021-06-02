@@ -3,6 +3,7 @@ const restaurants = require("../../controllers/restaurants"); //objeto con resta
 const { Restaurant } = require("../../../database/connection");
 const bodyParser = require("body-parser");
 const app = express();
+const {upload} = require('../../middlewares/File');
 
 //sirve para recibir el body en una peticion post, dependiendo la versión de node se los pedira o no yo creo que estoy desactualizado
 app.use(bodyParser.json());
@@ -13,11 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/",(req,res) => restaurants.getRestaurants(req,res));
 
 //post Inserting Restaurants
-app.post("/", async (req, res) => {
-  const data = req.body;
-  if (!data.name || !data.address || !data.schedule) {
-    res.json({ error: "Invalid data!" });
-  }
+app.post("/",upload.single('file'), async (req, res) => {
+  let data = req.body;
+
+ data.profile_picture = 'localhost:4000/'+req.file.path;
+ console.log(req.file);
   const restaurant = await Restaurant.create(data);
 
   res.json(restaurant);
